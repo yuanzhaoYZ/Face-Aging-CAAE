@@ -15,7 +15,6 @@ import tensorflow as tf
 import numpy as np
 from scipy.io import savemat
 from ops import *
-import random
 
 class FaceAging(object):
     def __init__(self,
@@ -255,7 +254,7 @@ class FaceAging(object):
         self.writer = tf.summary.FileWriter(os.path.join(self.save_dir, 'summary'), self.session.graph)
 
         # ************* get some random samples as testing data to visualize the learning process *********************
-        sample_files = random.sample(file_names, self.size_batch)
+        sample_files = file_names[0:self.size_batch]
         file_names[0:self.size_batch] = []
         sample = [load_image(
             image_path=sample_file,
@@ -365,7 +364,11 @@ class FaceAging(object):
                         label = 9
                     batch_label_age[i, label] = self.image_value_range[-1]
                     gender = int(str(batch_files[i]).split('/')[-1].split('_')[1])
-                    batch_label_gender[i, gender] = self.image_value_range[-1]
+                    try:
+                        batch_label_gender[i, gender] = self.image_value_range[-1]
+                    except Exception as e:
+                        print(e.message)
+
 
                 # prior distribution on the prior of z
                 batch_z_prior = np.random.uniform(
