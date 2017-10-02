@@ -21,7 +21,7 @@ source activate py27_tf012
 pip install --ignore-installed https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-0.12.1-cp27-none-linux_x86_64.whl
 pip install scipy
 conda install PIL
-
+conda install -c menpo opencv
 ```
 
 * Mac (CPU Only)
@@ -31,7 +31,7 @@ source activate py27_tf012
 pip install --ignore-installed https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.12.1-py2-none-any.whl
 pip install scipy
 conda install PIL
-
+conda install -c menpo opencv
 ```
 
 
